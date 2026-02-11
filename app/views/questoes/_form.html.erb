@@ -1,0 +1,70 @@
+<div class="rounded-3xl border border-slate-200/80 bg-white/80 p-6 shadow-lg shadow-slate-200/60 ring-1 ring-black/5 backdrop-blur">
+  <%= form_with model: [prova, questao], class: "space-y-4", data: { controller: "questao-fields" } do |f| %>
+    <% if questao.errors.any? %>
+      <div class="rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-900 ring-1 ring-rose-100">
+        <p class="font-semibold">Verifique os campos:</p>
+        <ul class="mt-2 list-disc pl-5">
+          <% questao.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+      <div class="md:col-span-2">
+        <%= f.label :tipo, "Tipo", class: "block text-sm font-semibold text-slate-900" %>
+        <%= f.select :tipo,
+          [["Múltipla escolha", "multipla_escolha"], ["Dissertativa", "dissertativa"]],
+          {},
+          class: "mt-2 w-full rounded-xl border border-slate-300/80 bg-white/80 px-3 py-2.5 text-sm text-slate-900 shadow-sm outline-none transition focus:border-indigo-400 focus:ring-2 focus:ring-indigo-200",
+          data: { questao_fields_target: "tipo", action: "change->questao-fields#toggle" } %>
+      </div>
+
+      <div>
+        <%= f.label :peso, "Peso", class: "block text-sm font-semibold text-slate-900" %>
+        <%= f.number_field :peso, step: 0.1, min: 1, max: 10, lang: "pt-BR", class: "mt-2 w-full rounded-xl border border-slate-300/80 bg-white/80 px-3 py-2.5 text-sm text-slate-900 shadow-sm outline-none transition focus:border-indigo-400 focus:ring-2 focus:ring-indigo-200" %>
+        <p class="mt-1 text-xs text-slate-500">De 1 a 10 (ex.: 1.2)</p>
+      </div>
+    </div>
+
+    <div>
+      <%= f.label :enunciado, "Enunciado", class: "block text-sm font-semibold text-slate-900" %>
+      <%= f.text_area :enunciado, rows: 6, class: "mt-2 w-full rounded-xl border border-slate-300/80 bg-white/80 px-3 py-2.5 text-sm text-slate-900 shadow-sm outline-none transition focus:border-indigo-400 focus:ring-2 focus:ring-indigo-200" %>
+    </div>
+
+    <div data-questao-fields-target="respostasWrapper">
+      <%= f.label :respostas, "Respostas (alternativas)", class: "block text-sm font-semibold text-slate-900" %>
+      <%= f.text_area :respostas,
+                      rows: 5,
+                      placeholder: "A-) 1\nB-) 2\nC-) 3",
+                      class: "mt-2 w-full rounded-xl border border-slate-300/80 bg-white/80 px-3 py-2.5 text-sm text-slate-900 shadow-sm outline-none transition focus:border-indigo-400 focus:ring-2 focus:ring-indigo-200",
+                      data: { questao_fields_target: "respostas", action: "input->questao-fields#syncSelectOptions" } %>
+      <p class="mt-1 text-xs text-slate-500">Preencha somente para múltipla escolha (uma alternativa por linha).</p>
+    </div>
+
+    <div data-questao-fields-target="respostaSelectWrapper">
+      <%= f.label :resposta_colocada, "Resposta escolhida", class: "block text-sm font-semibold text-slate-900" %>
+      <%= f.select :resposta_colocada,
+                   questao.alternativa_labels,
+                   { include_blank: "Selecione…" },
+                   class: "mt-2 w-full rounded-xl border border-slate-300/80 bg-white/80 px-3 py-2.5 text-sm text-slate-900 shadow-sm outline-none transition focus:border-indigo-400 focus:ring-2 focus:ring-indigo-200",
+                   data: { questao_fields_target: "respostaSelect" } %>
+      <p class="mt-1 text-xs text-slate-500">As opções são lidas das alternativas acima (A, B, C...).</p>
+    </div>
+
+    <div data-questao-fields-target="respostaTextWrapper">
+      <%= f.label :resposta_colocada, "Resposta escolhida", class: "block text-sm font-semibold text-slate-900" %>
+      <%= f.text_area :resposta_colocada,
+                      rows: 5,
+                      class: "mt-2 w-full rounded-xl border border-slate-300/80 bg-white/80 px-3 py-2.5 text-sm text-slate-900 shadow-sm outline-none transition focus:border-indigo-400 focus:ring-2 focus:ring-indigo-200",
+                      data: { questao_fields_target: "respostaText" } %>
+      <p class="mt-1 text-xs text-slate-500">Para dissertativa, escreva o texto da resposta.</p>
+    </div>
+
+    <div class="pt-2 flex gap-3">
+      <%= f.submit (questao.persisted? ? "Salvar alterações" : "Criar questão"), class: "inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-indigo-600 to-sky-600 px-5 py-3 text-sm font-semibold text-white shadow-sm shadow-indigo-200/60 transition hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2" %>
+      <%= link_to "Cancelar", prova_questoes_path(prova), class: "inline-flex items-center justify-center rounded-xl border border-slate-300/80 bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow-sm transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-300 focus:ring-offset-2" %>
+    </div>
+  <% end %>
+</div>

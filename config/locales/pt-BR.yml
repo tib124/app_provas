@@ -1,6 +1,12 @@
 pt-BR:
   hello: "Olá"
 
+  date:
+    formats:
+      default: "%d/%m/%Y"
+      short: "%d/%m"
+      long: "%d de %B de %Y"
+
   devise:
     sessions:
       signed_in: "Login realizado com sucesso."
@@ -37,6 +43,8 @@ pt-BR:
 
   errors:
     messages:
+      greater_than_or_equal_to: "deve ser maior ou igual a %{count}"
+      less_than_or_equal_to: "deve ser menor ou igual a %{count}"
       not_saved:
         one: "Não foi possível salvar: 1 erro."
         other: "Não foi possível salvar: %{count} erros."
