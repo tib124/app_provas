@@ -1,0 +1,13 @@
+<div class="space-y-6">
+  <div>
+    <%= link_to "← Voltar", alunos_path, class: "text-sm font-semibold text-slate-700 hover:text-slate-900" %>
+  </div>
+
+  <div>
+    <p class="text-sm font-semibold text-slate-600">Aluno</p>
+    <h1 class="mt-2 text-2xl font-bold tracking-tight text-slate-900">Editar aluno</h1>
+    <p class="mt-1 text-slate-600">Atualize nome e e-mail.</p>
+  </div>
+
+  <%= render "form", aluno: @aluno %>
+</div>

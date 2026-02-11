@@ -28,6 +28,20 @@
 
           <div class="space-y-4">
             <div>
+              <%= f.label :username, "Usuário", class: "block text-sm font-semibold text-slate-900" %>
+              <p class="mt-1 text-xs text-slate-600">Ex.: <span class="font-semibold text-slate-900">prof_maria</span></p>
+              <div class="relative mt-2">
+                <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
+                  <svg viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5" aria-hidden="true">
+                    <path d="M10 10a4 4 0 100-8 4 4 0 000 8z" />
+                    <path fill-rule="evenodd" d="M2 16a6 6 0 0112 0v1H2v-1z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <%= f.text_field :username, autocomplete: "username", class: "w-full rounded-xl border border-slate-300/80 bg-white/80 py-2.5 pl-10 pr-3 text-sm text-slate-900 shadow-sm outline-none transition focus:border-indigo-400 focus:ring-2 focus:ring-indigo-200" %>
+              </div>
+            </div>
+
+            <div>
               <%= f.label :email, "E-mail", class: "block text-sm font-semibold text-slate-900" %>
               <div class="relative mt-2">
                 <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
