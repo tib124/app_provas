@@ -1,0 +1,73 @@
+<div class="relative isolate min-h-screen">
+  <div class="pointer-events-none absolute inset-0 -z-10 opacity-70">
+    <div class="absolute -left-24 -top-24 h-72 w-72 rounded-full bg-indigo-200 blur-3xl"></div>
+    <div class="absolute -right-24 top-32 h-72 w-72 rounded-full bg-emerald-200 blur-3xl"></div>
+    <div class="absolute left-1/3 top-[28rem] h-72 w-72 rounded-full bg-sky-200 blur-3xl"></div>
+  </div>
+
+  <div class="mx-auto flex min-h-screen max-w-7xl items-center justify-center px-4 py-12">
+    <div class="w-full max-w-md">
+      <div class="mb-6 text-center">
+        <%= link_to root_path, class: "inline-flex items-center justify-center gap-2 rounded-full bg-slate-900/95 px-4 py-1.5 text-xs font-semibold tracking-wide text-white shadow-sm ring-1 ring-white/10" do %>
+          <span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/10">
+            <svg viewBox="0 0 20 20" fill="currentColor" class="h-3.5 w-3.5" aria-hidden="true">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.707a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+          </span>
+          Provas App
+        <% end %>
+        <h1 class="mt-4 text-3xl font-extrabold tracking-tight text-slate-900">
+          Entrar
+        </h1>
+        <p class="mt-2 text-sm text-slate-600">Acesse sua conta para continuar corrigindo mais rápido.</p>
+      </div>
+
+      <div class="rounded-3xl border border-slate-200/80 bg-white/80 p-6 shadow-lg shadow-slate-200/60 ring-1 ring-black/5 backdrop-blur">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="space-y-4">
+            <div>
+              <%= f.label :email, "E-mail", class: "block text-sm font-semibold text-slate-900" %>
+              <div class="relative mt-2">
+                <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
+                  <svg viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5" aria-hidden="true">
+                    <path d="M2 5.5A2.5 2.5 0 014.5 3h11A2.5 2.5 0 0118 5.5v9A2.5 2.5 0 0115.5 17h-11A2.5 2.5 0 012 14.5v-9zM4.06 5.44a.75.75 0 10-.87 1.22l6.2 4.43a1.5 1.5 0 001.72 0l6.2-4.43a.75.75 0 10-.87-1.22l-6.1 4.36a.5.5 0 01-.58 0l-6.1-4.36z" />
+                  </svg>
+                </div>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full rounded-xl border border-slate-300/80 bg-white/80 py-2.5 pl-10 pr-3 text-sm text-slate-900 shadow-sm outline-none transition focus:border-indigo-400 focus:ring-2 focus:ring-indigo-200" %>
+              </div>
+            </div>
+
+            <div>
+              <%= f.label :password, "Senha", class: "block text-sm font-semibold text-slate-900" %>
+              <div class="relative mt-2">
+                <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
+                  <svg viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M10 2a3 3 0 00-3 3v1H6a2 2 0 00-2 2v7a2 2 0 002 2h8a2 2 0 002-2V8a2 2 0 00-2-2h-1V5a3 3 0 00-3-3zm-1.5 4V5a1.5 1.5 0 113 0v1h-3z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <%= f.password_field :password, autocomplete: "current-password", class: "w-full rounded-xl border border-slate-300/80 bg-white/80 py-2.5 pl-10 pr-3 text-sm text-slate-900 shadow-sm outline-none transition focus:border-indigo-400 focus:ring-2 focus:ring-indigo-200" %>
+              </div>
+            </div>
+
+            <% if devise_mapping.rememberable? %>
+              <div class="flex items-center justify-between">
+                <label class="inline-flex items-center gap-2 text-sm text-slate-700">
+                  <%= f.check_box :remember_me, class: "h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-400" %>
+                  Lembrar de mim
+                </label>
+              </div>
+            <% end %>
+
+            <div class="pt-2">
+              <%= f.submit "Entrar", class: "group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-600 to-sky-600 px-5 py-3 text-sm font-semibold text-white shadow-sm shadow-indigo-200/60 transition hover:-translate-y-0.5 hover:shadow-md hover:shadow-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2" %>
+            </div>
+          </div>
+        <% end %>
+
+        <div class="mt-6 border-t border-slate-200/80 pt-5">
+          <%= render "devise/shared/links" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

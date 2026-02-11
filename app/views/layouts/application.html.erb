@@ -23,7 +23,14 @@
   </head>
 
   <body>
+    <%= render "layouts/alerts" %>
+
+    <% if respond_to?(:devise_controller?) && devise_controller? %>
       <%= yield %>
-    </main>
+    <% else %>
+      <main class="container mx-auto mt-12 px-5">
+        <%= yield %>
+      </main>
+    <% end %>
   </body>
 </html>

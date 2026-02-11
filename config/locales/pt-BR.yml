@@ -1,0 +1,42 @@
+pt-BR:
+  hello: "Olá"
+
+  devise:
+    sessions:
+      signed_in: "Login realizado com sucesso."
+      signed_out: "Você saiu da sua conta."
+      already_signed_out: "Você já saiu da sua conta."
+    registrations:
+      signed_up: "Cadastro realizado com sucesso."
+      signed_up_but_inactive: "Cadastro realizado. Sua conta ainda não está ativa."
+      signed_up_but_locked: "Cadastro realizado, mas sua conta está bloqueada."
+      signed_up_but_unconfirmed: "Enviamos um e-mail de confirmação. Verifique sua caixa de entrada."
+      update_needs_confirmation: "Atualizamos sua conta, mas é necessário confirmar o novo e-mail."
+      updated: "Sua conta foi atualizada com sucesso."
+      destroyed: "Sua conta foi removida com sucesso."
+    passwords:
+      send_instructions: "Você receberá um e-mail com instruções para redefinir sua senha em alguns minutos."
+      updated: "Sua senha foi alterada com sucesso."
+      updated_not_active: "Sua senha foi alterada com sucesso."
+    confirmations:
+      send_instructions: "Você receberá um e-mail com instruções de confirmação em alguns minutos."
+      confirmed: "Seu e-mail foi confirmado com sucesso."
+    unlocks:
+      send_instructions: "Você receberá um e-mail com instruções para desbloquear sua conta em alguns minutos."
+      unlocked: "Sua conta foi desbloqueada com sucesso."
+
+    failure:
+      already_authenticated: "Você já está logado(a)."
+      inactive: "Sua conta ainda não foi ativada."
+      invalid: "E-mail ou senha inválidos."
+      locked: "Sua conta está bloqueada."
+      last_attempt: "Você tem mais uma tentativa antes de sua conta ser bloqueada."
+      not_found_in_database: "E-mail ou senha inválidos."
+      timeout: "Sua sessão expirou. Faça login novamente para continuar."
+      unauthenticated: "Você precisa fazer login ou cadastrar-se antes de continuar."
+
+  errors:
+    messages:
+      not_saved:
+        one: "Não foi possível salvar: 1 erro."
+        other: "Não foi possível salvar: %{count} erros."
