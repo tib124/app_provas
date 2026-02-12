@@ -18,6 +18,26 @@ class Prova < ApplicationRecord
   validate :precisa_ter_pelo_menos_uma_questao, on: :create
   validate :aluno_deve_pertencer_ao_mesmo_usuario
 
+  # Calcula a pontuação da prova automaticamente
+  def calcular_score
+    ProvaCorrectionService.new(self).calculate_score
+  end
+
+  # Calcula a pontuação máxima possível
+  def calcular_score_maximo
+    ProvaCorrectionService.new(self).calculate_max_score
+  end
+
+  # Calcula a porcentagem de acerto
+  def calcular_percentual
+    ProvaCorrectionService.new(self).calculate_percentage
+  end
+
+  # Retorna detalhes de cada questão e pontuação
+  def detalhes_correcao
+    ProvaCorrectionService.new(self).get_details
+  end
+
   private
 
   def precisa_ter_pelo_menos_uma_questao
@@ -33,3 +53,4 @@ class Prova < ApplicationRecord
     errors.add(:aluno, "deve pertencer ao mesmo usuário")
   end
 end
+
