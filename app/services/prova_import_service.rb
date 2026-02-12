@@ -115,8 +115,21 @@ class ProvaImportService
                      Date.current
                    end
 
-    # Procurar prova existente ou criar nova
-    prova = @usuario.provas.find_or_create_by(titulo: titulo, aluno_ra: aluno_ra, data_criacao: data_criacao)
+    # Criar prova com atributos iniciais e depois salvar
+    prova_attrs = { titulo: titulo, data_criacao: data_criacao }
+    prova_attrs[:aluno_ra] = aluno_ra if aluno_ra.present?
+    
+    prova = @usuario.provas.find_by(titulo: titulo, data_criacao: data_criacao)
+    
+    unless prova
+      prova = @usuario.provas.new(prova_attrs)
+      unless prova.save
+        return {
+          success: false,
+          error: "Linha #{line_number}: Erro ao criar prova - #{prova.errors.full_messages.join(', ')}"
+        }
+      end
+    end
 
     questoes_criadas = 0
     gabaritos_criados = 0
