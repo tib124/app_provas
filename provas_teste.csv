@@ -1,0 +1,17 @@
+prova_titulo,aluno_ra,data_criacao,questao_enunciado,questao_tipo,questao_peso,questao_respostas,resposta_colocada,resposta_correta
+Prova de Química,X111111,2026-02-12,Qual é o número atômico do Carbono?,multipla_escolha,1.5,A) 4 | B) 6 | C) 8 | D) 12,B,B
+Prova de Química,X111111,2026-02-12,O que é um isótopo?,dissertativa,2.0,,Átomos do mesmo elemento com número diferente de nêutrons,Átomos do mesmo elemento com diferentes números de nêutrons
+Prova de Química,X111111,2026-02-12,Qual é a fórmula da água?,multipla_escolha,1.0,A) H2O | B) H2O2 | C) HO | D) H3O,A,A
+Prova de Física,Y222222,2026-02-12,Qual é a velocidade da luz no vácuo?,multipla_escolha,2.0,A) 300.000 km/s | B) 150.000 km/s | C) 450.000 km/s | D) 600.000 km/s,A,A
+Prova de Física,Y222222,2026-02-12,Explique a Lei da Gravitação Universal,dissertativa,3.0,,Força entre dois corpos proporcional às suas massas,Força entre dois corpos proporcional ao produto de suas massas e inversamente proporcional ao quadrado da distância
+Prova de Filosofia,Z333333,2026-02-12,Quem foi Platão?,multipla_escolha,1.5,A) Um sofista | B) Um filósofo grego | C) Um imperador romano | D) Um poeta,B,B
+Prova de Filosofia,Z333333,2026-02-12,O que é o método socrático?,dissertativa,2.5,,Um método de ensino baseado em perguntas,Um método de ensino baseado em questionar para chegar à verdade
+Prova de Educação Física,A444444,2026-02-11,Qual é a altura da rede de vôlei para homens?,multipla_escolha,1.0,A) 2.40m | B) 2.43m | C) 2.50m | D) 3.00m,B,B
+Prova de Educação Física,A444444,2026-02-11,Quantos jogadores tem cada time de basquete em quadra?,multipla_escolha,1.0,A) 5 | B) 6 | C) 7 | D) 8,A,A
+Prova de Educação Física,A444444,2026-02-11,Descreva as regras básicas do futebol,dissertativa,3.0,,11 jogadores por time,11 jogadores por time em cada lado do campo
+Prova de Arte,B555555,2026-02-12,Qual movimento artístico desenvolveu-se no século XX?,multipla_escolha,1.5,A) Impressionismo | B) Cubismo | C) Renascença | D) Barroco,B,B
+Prova de Arte,B555555,2026-02-12,Quem pintou A Noite Estrelada?,multipla_escolha,1.5,A) Picasso | B) Van Gogh | C) Da Vinci | D) Michelangelo,B,B
+Prova de Estatística,C666666,2026-02-12,O que é desvio padrão?,multipla_escolha,2.0,A) Valor mínimo | B) Medida de dispersão | C) Valor máximo | D) Valor médio,B,B
+Prova de Estatística,C666666,2026-02-12,Qual é a mediana dos números 1 2 3 4 5?,multipla_escolha,1.5,A) 1 | B) 2 | C) 3 | D) 5,C,C
+Prova de Geografia,D777777,2026-02-12,Qual é a capital da Austrália?,multipla_escolha,1.0,A) Sydney | B) Melbourne | C) Canberra | D) Brisbane,C,A
+Prova de Geografia,D777777,2026-02-12,Nome 3 desertos do mundo,dissertativa,2.0,,Deserto do Saara,Saara | Kalahari | Atacama
