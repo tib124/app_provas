@@ -3,8 +3,8 @@ services:
     name: app_provas
     env: ruby
     plan: free
-    buildCommand: bundle install --with production && bundle exec rake assets:precompile
-    startCommand: bundle exec rails db:migrate && bundle exec rails server -p $PORT
+    buildCommand: bundle install && bundle exec rake assets:precompile
+    startCommand: ./bin/render-build.sh
     envVars:
       - key: DATABASE_URL
         fromDatabase:
