@@ -45,6 +45,31 @@ class ProvasController < ApplicationController
     redirect_to provas_path, notice: "Prova removida."
   end
 
+  def import
+    @alunos = current_user.alunos.order(nome: :asc)
+  end
+
+  def process_import
+    csv_file = params[:csv_file]
+
+    if csv_file.blank?
+      redirect_to provas_path, alert: "Por favor, selecione um arquivo CSV."
+      return
+    end
+
+    begin
+      result = ProvaImportService.new(current_user, csv_file).call
+      
+      if result[:success]
+        redirect_to provas_path, notice: result[:message]
+      else
+        redirect_to provas_path, alert: result[:message]
+      end
+    rescue StandardError => e
+      redirect_to provas_path, alert: "Erro ao importar CSV: #{e.message}"
+    end
+  end
+
   private
 
   def set_prova
