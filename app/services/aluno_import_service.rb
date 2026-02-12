@@ -22,7 +22,14 @@ class AlunoImportService
   end
 
   def import_alunos
-    rows = CSV.parse(@csv_file.read, headers: true)
+    csv_content = @csv_file.read
+    
+    # Converter para UTF-8 se necessário
+    if csv_content.encoding.name != 'UTF-8'
+      csv_content = csv_content.force_encoding('UTF-8')
+    end
+    
+    rows = CSV.parse(csv_content, headers: true)
     
     if rows.empty?
       return { success: false, message: "Arquivo CSV vazio." }
