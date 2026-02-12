@@ -14,9 +14,11 @@ class Prova < ApplicationRecord
   accepts_nested_attributes_for :questoes, allow_destroy: true, reject_if: :all_blank
 
   validates :titulo, presence: true
-  validates :aluno, presence: true, on: :create
-  validate :precisa_ter_pelo_menos_uma_questao, on: :create
+  validates :aluno, presence: true, on: :create, unless: :skip_validations
+  validate :precisa_ter_pelo_menos_uma_questao, on: :create, unless: :skip_validations
   validate :aluno_deve_pertencer_ao_mesmo_usuario
+
+  attr_accessor :skip_validations
 
   # Calcula a pontuação da prova automaticamente
   def calcular_score

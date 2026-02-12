@@ -123,6 +123,7 @@ class ProvaImportService
     
     unless prova
       prova = @usuario.provas.new(prova_attrs)
+      prova.skip_validations = true
       unless prova.save
         return {
           success: false,
