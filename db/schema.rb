@@ -48,7 +48,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_02_12_113519) do
     t.index ["usuario_id"], name: "index_provas_on_usuario_id"
   end
 
-  create_table "questoes", id: :bigint, default: -> { "nextval('questaos_id_seq'::regclass)" }, force: :cascade do |t|
+  create_table "questoes", force: :cascade do |t|
     t.bigint "prova_id", null: false
     t.string "tipo"
     t.text "enunciado"
