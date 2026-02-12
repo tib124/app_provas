@@ -8,7 +8,10 @@
       <h1 class="text-2xl font-bold tracking-tight text-slate-900">Meus alunos</h1>
       <p class="mt-1 text-slate-600">Cadastre o aluno (RA, nome e e-mail) para vincular às provas.</p>
     </div>
-    <%= link_to "Novo aluno", new_aluno_path, class: "inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-indigo-600 to-sky-600 px-5 py-3 text-sm font-semibold text-white shadow-sm shadow-indigo-200/60 transition hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2" %>
+    <div class="flex gap-2">
+      <%= link_to "Importar CSV", import_alunos_path, class: "inline-flex items-center justify-center rounded-xl border border-slate-300/80 bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow-sm transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-300 focus:ring-offset-2" %>
+      <%= link_to "Novo aluno", new_aluno_path, class: "inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-indigo-600 to-sky-600 px-5 py-3 text-sm font-semibold text-white shadow-sm shadow-indigo-200/60 transition hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2" %>
+    </div>
   </div>
 
   <% if @alunos.any? %>
