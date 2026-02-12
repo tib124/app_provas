@@ -22,6 +22,30 @@ class AlunosController < ApplicationController
     end
   end
 
+  def import
+  end
+
+  def process_import
+    csv_file = params[:csv_file]
+
+    if csv_file.blank?
+      redirect_to alunos_path, alert: "Por favor, selecione um arquivo CSV."
+      return
+    end
+
+    begin
+      result = AlunoImportService.new(current_user, csv_file).call
+      
+      if result[:success]
+        redirect_to alunos_path, notice: result[:message]
+      else
+        redirect_to alunos_path, alert: result[:message]
+      end
+    rescue StandardError => e
+      redirect_to alunos_path, alert: "Erro ao importar CSV: #{e.message}"
+    end
+  end
+
   def edit
   end
 
@@ -52,3 +76,4 @@ class AlunosController < ApplicationController
     params.require(:aluno).permit(:nome, :email)
   end
 end
+
