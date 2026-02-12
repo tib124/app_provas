@@ -196,8 +196,12 @@ class ProvaImportService
     message += "- #{gabaritos_criados} gabarito(s) criado(s)"
     
     if failed.any?
-      message += "\n\nErros encontrados:\n"
-      message += failed.join("\n")
+      error_count = failed.length
+      displayed_errors = failed.first(5)
+      
+      message += "\n\nErros encontrados (#{error_count} total):\n"
+      message += displayed_errors.join("\n")
+      message += "\n... e mais #{error_count - 5} erro(s)" if error_count > 5
     end
 
     message
