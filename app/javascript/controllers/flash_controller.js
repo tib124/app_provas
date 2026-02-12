@@ -4,7 +4,7 @@ export default class extends Controller {
   static values = { timeout: Number }
 
   connect() {
-    const timeoutMs = this.timeoutValue || 5000
+    const timeoutMs = this.timeoutValue || 2000
 
     this._timeout = setTimeout(() => {
       this.dismiss()
