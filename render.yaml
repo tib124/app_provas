@@ -20,4 +20,3 @@ databases:
     databaseName: app_provas_production
     plan: free
     region: ohio
-    postgresVersion: 15
