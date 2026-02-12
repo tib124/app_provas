@@ -63,10 +63,10 @@ class ProvasController < ApplicationController
       if result[:success]
         redirect_to provas_path, notice: result[:message]
       else
-        redirect_to provas_path, alert: result[:message]
+        redirect_to import_provas_path, alert: result[:message]
       end
     rescue StandardError => e
-      redirect_to provas_path, alert: "Erro ao importar CSV: #{e.message}"
+      redirect_to import_provas_path, alert: "Erro ao importar CSV: #{e.message}"
     end
   end
 

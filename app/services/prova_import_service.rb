@@ -165,7 +165,7 @@ class ProvaImportService
 
     peso = peso_str.present? ? peso_str.to_f : 1.0
 
-    questao = prova.questoes.create(
+    questao = prova.questoes.build(
       tipo: tipo.presence || 'multipla_escolha',
       enunciado: enunciado,
       peso: peso,
@@ -173,20 +173,34 @@ class ProvaImportService
       resposta_colocada: resposta_colocada
     )
 
-    if questao.persisted? && resposta_correta.present?
+    unless questao.save
+      return {
+        success: false,
+        error: "Linha #{line_number}: Erro ao criar questão - #{questao.errors.full_messages.join(', ')}"
+      }
+    end
+
+    if resposta_correta.present?
       gabarito = questao.create_gabarito(
         prova_id: prova.id,
         resposta_correta: resposta_correta
       )
       
+      unless gabarito
+        return {
+          success: false,
+          error: "Linha #{line_number}: Erro ao criar gabarito"
+        }
+      end
+      
       return { 
         success: true, 
         questoes_criadas: 1,
-        gabaritos_criados: gabarito.persisted? ? 1 : 0
+        gabaritos_criados: 1
       }
     end
 
-    { success: true, questoes_criadas: questao.persisted? ? 1 : 0, gabaritos_criados: 0 }
+    { success: true, questoes_criadas: 1, gabaritos_criados: 0 }
   end
 
   def build_message(provas_criadas, questoes_criadas, gabaritos_criados, failed)
