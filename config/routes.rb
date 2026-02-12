@@ -4,9 +4,18 @@ Rails.application.routes.draw do
 
   get "dashboard" => "dashboard#show", as: :dashboard
 
-  resources :alunos, only: %i[index new create edit update destroy]
+  resources :alunos, only: %i[index new create edit update destroy] do
+    collection do
+      get :import
+      post :process_import
+    end
+  end
 
   resources :provas, only: %i[index show new create edit update destroy] do
+    collection do
+      get :import
+      post :process_import
+    end
     get "gabarito" => "gabaritos#index", as: :gabarito
 
     resources :questoes, only: %i[index new create edit update destroy] do
