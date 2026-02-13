@@ -1,53 +1,91 @@
-<div class="w-full min-h-[100vh] pt-24">
-  <div class="max-w-xl w-full mx-auto shadow-lg bg-gray-200 rounded-lg py-8">
-    <h2 class="text-xl mb-4 text-center">Edit <%= resource_name.to_s.humanize %></h2>
+<div class="w-full min-h-screen pt-12 pb-12">
+  <div class="max-w-2xl w-full mx-auto">
+    <div class="rounded-2xl border border-slate-200/80 bg-white shadow-lg p-8">
+      <h2 class="text-3xl font-bold text-slate-900 mb-2">Meu Perfil</h2>
+      <p class="text-slate-600 mb-8">Edite suas informações e foto de perfil</p>
 
-    <div class="w-3/4 mx-auto">
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
 
-        <div class="field mb-4">
-          <%= f.label :username %><br />
-          <%= f.text_field :username, autocomplete: "username", class: "w-full rounded-lg bg-gray-50" %>
+        <!-- Avatar Section -->
+        <div class="mb-8 pb-8 border-b border-slate-200">
+          <label class="block text-sm font-semibold text-slate-900 mb-4">Foto de Perfil</label>
+          <div class="flex items-center gap-6">
+            <div class="flex-shrink-0">
+              <% if current_user.avatar.attached? %>
+                <%= image_tag current_user.avatar, class: "w-24 h-24 rounded-full object-cover border-2 border-indigo-200" %>
+              <% else %>
+                <div class="w-24 h-24 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-white text-2xl font-bold border-2 border-indigo-200">
+                  <%= current_user.email[0].upcase %>
+                </div>
+              <% end %>
+            </div>
+            <div class="flex-1">
+              <div class="field">
+                <%= f.file_field :avatar, accept: "image/png,image/gif,image/jpeg", class: "w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" %>
+              </div>
+              <p class="text-xs text-slate-500 mt-2">JPG, PNG ou GIF. Máximo 5MB.</p>
+            </div>
+          </div>
         </div>
 
-        <div class="field mb-4">
-          <%= f.label :email %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full rounded-lg bg-gray-50" %>
+        <!-- Username Field -->
+        <div class="field mb-6">
+          <%= f.label :username, "Nome de usuário", class: "block text-sm font-semibold text-slate-900 mb-2" %><br />
+          <%= f.text_field :username, autocomplete: "username", class: "w-full rounded-lg border border-slate-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" %>
+        </div>
+
+        <!-- Email Field -->
+        <div class="field mb-6">
+          <%= f.label :email, class: "block text-sm font-semibold text-slate-900 mb-2" %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full rounded-lg border border-slate-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" %>
         </div>
 
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <div class="mb-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+            Aguardando confirmação para: <strong><%= resource.unconfirmed_email %></strong>
+          </div>
         <% end %>
 
-        <div class="field mb-4">
-          <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-          <%= f.password_field :password, autocomplete: "new-password", class: "w-full rounded-lg bg-gray-50" %>
+        <hr class="my-8 border-slate-200">
+
+        <!-- Password Fields -->
+        <h3 class="text-lg font-semibold text-slate-900 mb-4">Alterar Senha</h3>
+
+        <div class="field mb-6">
+          <%= f.label :password, "Nova senha", class: "block text-sm font-semibold text-slate-900 mb-2" %>
+          <em class="text-xs text-slate-500">(deixe em branco se não deseja alterar)</em><br />
+          <%= f.password_field :password, autocomplete: "new-password", class: "w-full rounded-lg border border-slate-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" %>
           <% if @minimum_password_length %>
-            <br />
-            <em><%= @minimum_password_length %> characters minimum</em>
+            <em class="text-xs text-slate-500 block mt-1"><%= @minimum_password_length %> caracteres mínimo</em>
           <% end %>
         </div>
 
-        <div class="field mb-4">
-          <%= f.label :password_confirmation %><br />
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "w-full rounded-lg bg-gray-50" %>
+        <div class="field mb-6">
+          <%= f.label :password_confirmation, "Confirmar nova senha", class: "block text-sm font-semibold text-slate-900 mb-2" %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "w-full rounded-lg border border-slate-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" %>
         </div>
 
-        <div class="field mb-4">
-          <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-          <%= f.password_field :current_password, autocomplete: "current-password", class: "w-full rounded-lg bg-gray-50" %>
+        <div class="field mb-8">
+          <%= f.label :current_password, "Senha atual", class: "block text-sm font-semibold text-slate-900 mb-2" %>
+          <em class="text-xs text-slate-500">(necessária para confirmar as alterações)</em><br />
+          <%= f.password_field :current_password, autocomplete: "current-password", class: "w-full rounded-lg border border-slate-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" %>
         </div>
 
-        <div class="actions">
-          <%= f.submit "Update", class: "bg-blue-500 w-full p-2 text-blue-100 rounded-lg cursor-pointer hover:bg-blue-700 hover:text-blue-300" %>
+        <div class="actions flex gap-4 mb-8">
+          <%= f.submit "Salvar alterações", class: "flex-1 bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 px-6 py-3 text-white font-semibold rounded-lg shadow-lg transition-all" %>
+          <%= link_to "Cancelar", :back, class: "flex-1 text-center px-6 py-3 border border-slate-300 text-slate-900 font-semibold rounded-lg hover:bg-slate-50 transition-all" %>
         </div>
       <% end %>
-      <br/>
-      
-      <%= link_to "Back", :back, class: "text-lg" %>
 
-      <div class="flex gap-2 items-center mt-8 mx-auto">Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "bg-red-500 p-2 rounded-lg text-red-100" %></div>
+      <hr class="my-8 border-slate-200">
+
+      <!-- Danger Zone -->
+      <div class="bg-red-50 border border-red-200 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-red-900 mb-2">Zona de Risco</h3>
+        <p class="text-sm text-red-700 mb-4">Ações irreversíveis:</p>
+        <%= button_to "Deletar minha conta", registration_path(resource_name), data: { confirm: "Tem certeza? Isso é irreversível!", turbo_confirm: "Tem certeza? Isso é irreversível!" }, method: :delete, class: "bg-red-600 hover:bg-red-700 px-4 py-2 text-white font-semibold rounded-lg transition-all" %>
+      </div>
     </div>
   </div>
 </div>
