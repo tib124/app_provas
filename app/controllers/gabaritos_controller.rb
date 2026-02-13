@@ -49,7 +49,7 @@ class GabaritosController < ApplicationController
   private
 
   def set_prova
-    @prova = current_user.provas.find(params[:prova_id])
+    @prova = current_user.provas.find_by!(slug: params[:prova_id])
   end
 
   def set_questao

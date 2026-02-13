@@ -20,6 +20,12 @@ class Prova < ApplicationRecord
 
   attr_accessor :skip_validations
 
+  before_create :generate_slug
+
+  def to_param
+    slug
+  end
+
   # Calcula a pontuação da prova automaticamente
   def calcular_score
     ProvaCorrectionService.new(self).calculate_score
@@ -54,5 +60,8 @@ class Prova < ApplicationRecord
 
     errors.add(:aluno, "deve pertencer ao mesmo usuário")
   end
-end
 
+  def generate_slug
+    self.slug = SecureRandom.hex(6)
+  end
+end

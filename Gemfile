@@ -68,3 +68,9 @@ end
 gem "devise", "~> 5.0"
 
 gem "tailwind_devise", "~> 0.0.3"
+
+# HTTP client para API do Google Gemini (correção de dissertativas por IA)
+gem "faraday"
+
+# Carregar variáveis de ambiente do arquivo .env
+gem "dotenv-rails", groups: [:development, :test]

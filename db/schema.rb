@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_02_12_113519) do
+ActiveRecord::Schema[8.0].define(version: 2026_02_13_171000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -32,6 +32,8 @@ ActiveRecord::Schema[8.0].define(version: 2026_02_12_113519) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "questao_id"
+    t.string "avaliacao_ia"
+    t.text "justificativa_ia"
     t.index ["prova_id"], name: "index_gabaritos_on_prova_id"
     t.index ["questao_id"], name: "index_gabaritos_on_questao_id", unique: true
   end
@@ -43,12 +45,14 @@ ActiveRecord::Schema[8.0].define(version: 2026_02_12_113519) do
     t.string "titulo", null: false
     t.date "data_criacao", default: -> { "CURRENT_DATE" }, null: false
     t.string "aluno_ra"
+    t.string "slug", null: false
     t.index ["aluno_ra"], name: "index_provas_on_aluno_ra"
+    t.index ["slug"], name: "index_provas_on_slug", unique: true
     t.index ["usuario_id", "data_criacao"], name: "index_provas_on_usuario_id_and_data_criacao"
     t.index ["usuario_id"], name: "index_provas_on_usuario_id"
   end
 
-  create_table "questoes", force: :cascade do |t|
+  create_table "questoes", id: :bigint, default: -> { "nextval('questaos_id_seq'::regclass)" }, force: :cascade do |t|
     t.bigint "prova_id", null: false
     t.string "tipo"
     t.text "enunciado"

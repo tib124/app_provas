@@ -2,7 +2,7 @@
 
 class ProvasController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_prova, only: %i[show edit update destroy]
+  before_action :set_prova, only: %i[show edit update destroy corrigir_ia]
   before_action :load_alunos, only: %i[new edit create update]
   rescue_from ActiveRecord::RecordNotFound, with: :prova_not_found
 
@@ -11,6 +11,24 @@ class ProvasController < ApplicationController
   end
 
   def show
+  end
+
+  def corrigir_ia
+    correction = ProvaCorrectionService.new(@prova)
+
+    tem_dissertativas = @prova.questoes.joins(:gabarito).where(tipo: "dissertativa").exists?
+
+    unless tem_dissertativas
+      redirect_to prova_path(@prova), alert: "Esta prova não possui questões dissertativas."
+      return
+    end
+
+    begin
+      qtd = correction.corrigir_dissertativas_com_ia!
+      redirect_to prova_path(@prova), notice: "✅ #{qtd} questão(ões) dissertativa(s) corrigida(s) com IA!"
+    rescue StandardError => e
+      redirect_to prova_path(@prova), alert: "Erro ao corrigir com IA: #{e.message}"
+    end
   end
 
   def edit
@@ -75,7 +93,7 @@ class ProvasController < ApplicationController
   private
 
   def set_prova
-    @prova = current_user.provas.find(params[:id])
+    @prova = current_user.provas.find_by!(slug: params[:id])
   end
 
   def prova_not_found

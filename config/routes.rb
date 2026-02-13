@@ -16,6 +16,9 @@ Rails.application.routes.draw do
       get :import
       post :process_import
     end
+    member do
+      post :corrigir_ia
+    end
     get "gabarito" => "gabaritos#index", as: :gabarito
 
     resources :questoes, only: %i[index new create edit update destroy] do
