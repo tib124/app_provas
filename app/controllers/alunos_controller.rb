@@ -33,14 +33,16 @@ class AlunosController < ApplicationController
 
     begin
       result = AlunoImportService.new(current_user, csv_file).call
-      
+
       if result[:success]
         redirect_to alunos_path, notice: result[:message]
       else
         redirect_to alunos_path, alert: result[:message]
       end
+    rescue ArgumentError => e
+      redirect_to import_alunos_path, alert: e.message
     rescue StandardError => e
-      redirect_to alunos_path, alert: "Erro ao importar CSV: #{e.message}"
+      redirect_to import_alunos_path, alert: "Erro inesperado ao importar CSV: #{e.message}"
     end
   end
 
