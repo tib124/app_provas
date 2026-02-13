@@ -1,0 +1,10 @@
+prova_titulo,aluno_ra,data_criacao,questao_enunciado,questao_tipo,questao_peso,questao_respostas,resposta_colocada,resposta_correta
+Prova 1 - Geografia,A111111,2026-02-13,Qual é o maior país do mundo em território?,multipla_escolha,2.0,A) China | B) Rússia | C) Canadá | D) EUA,B,B
+Prova 1 - Geografia,A111111,2026-02-13,Qual é o rio mais longo do Brasil?,multipla_escolha,2.0,A) Amazonas | B) Paraná | C) São Francisco | D) Tocantins,A,A
+Prova 1 - Geografia,A111111,2026-02-13,Cite duas características do clima tropical,dissertativa,3.0,,Altas temperaturas e chuvas concentradas no verão,Temperaturas elevadas e duas estações bem definidas (seca e chuvosa)
+Prova 2 - Ciências,B222222,13/02/2026,Qual é a fórmula da água?,multipla_escolha,1.5,A) CO2 | B) H2O | C) NaCl | D) O2,B,B
+Prova 2 - Ciências,B222222,13/02/2026,Qual organela é responsável pela respiração celular?,multipla_escolha,1.5,A) Ribossomo | B) Lisossomo | C) Mitocôndria | D) Complexo de Golgi,C,C
+Prova 2 - Ciências,B222222,13/02/2026,Explique o que é fotossíntese,dissertativa,2.0,,As plantas usam luz do sol para produzir energia e oxigênio,Processo pelo qual as plantas convertem luz solar em energia química
+Prova 3 - Português,C333333,2026-02-13,Qual é o sujeito da frase: O gato dormiu no sofá?,multipla_escolha,2.0,A) gato | B) sofá | C) O gato | D) dormiu,C,C
+Prova 3 - Português,C333333,2026-02-13,Qual a classe gramatical de 'rapidamente'?,multipla_escolha,2.0,A) Adjetivo | B) Advérbio | C) Substantivo | D) Verbo,B,B
+Prova 3 - Português,C333333,2026-02-13,Escreva uma frase usando oração subordinada,dissertativa,3.0,,Eu saí quando parou de chover,Eu saí de casa quando a chuva parou
